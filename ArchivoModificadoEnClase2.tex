@@ -171,7 +171,7 @@
 
 \vspace{5mm}
 
-\pred{esTrayectoriaValida}{trayectoria:\TLista{\TLista{\float}}, cooperan : \TLista{bool}, pagos : \TLista{\TLista{\float}}, apuestas : \TLista{\TLista{\float}}, eventos : \TLista{\TLista{\float}}, recursos : \TLista{\float}}{(\longitud{trayectoria}=\longitud{eventos} \land (\forall e : \ent)(0 \leq e < \longitud{eventos} \implicaLuego \longitud{trayectoria[e]}=\longitud{recursos}) \\ \yLuego (\forall indiceEventos : \ent)(0 < indiceEvento < \longitud{eventos} \implicaLuego esListaDeRecursosActualizada\\(trayectoria[IndiceEvento],cooperan,trayectoria[indiceEvento-1],pagos,apuestas,evento))}
+\pred{esTrayectoriaValida}{trayectoria:\TLista{\TLista{\float}}, cooperan : \TLista{bool}, pagos : \TLista{\TLista{\float}}, apuestas : \TLista{\TLista{\float}}, eventos : \TLista{\TLista{\float}}, recursos : \TLista{\float}}{(\longitud{trayectoria}=\longitud{eventos} \land (\forall e : \ent)(0 \leq e < \longitud{eventos} \implicaLuego \longitud{trayectoria[e]}=\longitud{recursos}) \land trayectoria[0]=recursos  \\ \yLuego (\forall indiceEventos : \ent)(0 < indiceEvento < \longitud{eventos} \implicaLuego esListaDeRecursosActualizada\\(trayectoria[IndiceEvento],cooperan,trayectoria[indiceEvento-1],pagos,apuestas,evento))}
 
 
 

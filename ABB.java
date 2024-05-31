@@ -1,5 +1,6 @@
 package aed;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 // Todos los tipos de datos "Comparables" tienen el método compareTo()
@@ -48,6 +49,32 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             }
             return res;
         }
+
+        public Vector<T> listar(){
+            Vector<T> elementos = new Vector<T>(cardinal);
+            int indice = 0;
+            if(this != null && this.ramaIzq == null && this.ramaDer == null){
+                elementos.set(indice, valor);
+                indice ++;
+            }
+            if(this != null && this.ramaIzq != null && this.ramaDer == null){
+                ramaIzq.listar();
+                elementos.set(indice, valor);
+                indice++;
+            }
+            if(this != null && this.ramaDer != null && this.ramaIzq == null){
+                elementos.set(indice, valor);
+                ramaDer.listar();
+                indice ++;
+            }
+            if(this != null && this.ramaDer != null && this.ramaIzq != null){
+                ramaIzq.listar();
+                elementos.set(indice, valor);
+                ramaDer.listar();
+                indice++;
+            }
+            return elementos;
+        }
     }
 
     public ABB() {
@@ -60,15 +87,14 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public T minimo(){
-        T valorActual = raiz.valor;
-        ABB arbolito = new ABB();
-        T res;
-        if(raiz.ramaIzq == null){return valorActual;}else{
-            arbolito.raiz=raiz.ramaIzq;
-            res = (T) arbolito.minimo();
-        }
-        return res;
+        return minimoRecursivo(raiz);
+    }
 
+    public T minimoRecursivo(Nodo nodo){
+        if (nodo.ramaIzq == null){
+            return nodo.valor;
+        }
+        return minimoRecursivo(nodo.ramaIzq);
     }
 
     public T maximo(){
@@ -240,6 +266,12 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }
     
         public T siguiente() {
+            // Vector<T> vector = new Vector<T>(); 
+            // for (int i = 0; i < cardinal; i++) {
+            //     if (vector.get(i).compareTo(_actual.valor) == 0){
+            //         return vector.get(i+1);
+            //     }else{}                
+            // }
             throw new UnsupportedOperationException("No implementada aun");
         }
     }
